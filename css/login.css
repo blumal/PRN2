@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ACACAC;
+    margin: 0px;
+}
+
+.container {
+    margin-top: 17%;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+    height: auto;
+    box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.5);
+}

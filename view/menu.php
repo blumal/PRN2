@@ -20,6 +20,19 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+<header>
+    <div class="menu">
+        <nav>
+            <ul>
+                <?php
+                    echo "<li class='opcionesMenu'>Hola ".$_SESSION['email']."</li>";
+                    echo "<li><a class='opcionesMenu' href='./menu.php'>Home</a></li>";
+                    echo "<li><div class='logout'><a class='opcionesMenu' href='../services/kill-login.php'>Log out</a></div>";
+                ?>
+            </ul>
+        </nav>
+    </div>
+</header>
     <center>
         <h1>Salas</h1>
     </center>

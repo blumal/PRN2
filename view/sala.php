@@ -2,8 +2,7 @@
     include_once '../services/mesa.php';
     include_once '../services/connection.php';
     session_start();
-    if (isset($_SESSION['email']))
-    {
+    if (isset($_SESSION['email'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,108 +11,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesas</title>
-    <!-- librerias-->
     <script type="text/javascript" src="../js/code.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mesas.css">
 </head>
 <body>
-        <div class="logout"><a href="../services/kill-login.php"><i class="fas fa-user"></i></a></div>
-    <div class="region-mesas flex-cv <?php echo $salas;?>">
-            
-            <div>
+<header>
+    <div class="menu">
+        <nav>
+            <ul>
                 <?php
-                
-                
-                $mesa=$pdo->prepare("SELECT * from tbl_mesa WHERE id_sal_fk= $idsala");
+                    echo "<li class='opcionesMenu'>Hola ".$_SESSION['email']."</li>";
+                    echo "<li><a class='opcionesMenu' href='./menu.php'>Home</a></li>";
+                    echo "<li><div class='logout'><a class='opcionesMenu' href='../services/kill-login.php'>Log out</a></div>";
+                ?>
+            </ul>
+        </nav>
+    </div>
+</header>
+<center>
+    <?php
+        $id_sal = $_GET['id_sal'];
+        $sala=$pdo->prepare("SELECT nombre_sal from tbl_sala WHERE id_sal = $id_sal");
+        $sala->execute();
+        $sala = $sala->fetch(PDO::FETCH_NUM);
+    ?>
+    <h1>Mesas sala <?php echo $sala[0]?></h1>
+</center>
+    <div class="row container">
+            <?php
+                $id_sal = $_GET['id_sal'];
+                //echo $id_sal;
+                $mesa=$pdo->prepare("SELECT * from tbl_mesa WHERE id_sal_fk = $id_sal");
                 $mesa->execute();
                 $mesa=$mesa->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($mesa as $mesa) {
-                ?>
-               <div class="mesa btn-abrirPop mesasvg" data-id="<?php echo $mesa['id_mes']; ?>" data-status="<?php echo $mesa['status_mes']; ?>" >
-                   
-                    <?php
-                    if($mesa['capacidad_mes'] ==2)
-                    {
-                        ?>
-                        <div><img  data-status="<?php echo $mesa['status_mes']; ?>" src="../media/mesa2.svg" alt="mesa 2 personas" class="mesa-2"></div>
-                        
-                        <?php
-                    }
-                    elseif($mesa['capacidad_mes'] ==4)
-                    {
-                        ?>
-                        <div><img data-id="<?php echo $mesa['id_mes']; ?>" data-status="<?php echo $mesa['status_mes']; ?>" class="mesa-4" src="../media/mesa4.svg" alt="mesa 4 personas"></div>
-                        <?php    
-                    }
-                    elseif($mesa['capacidad_mes'] ==6)
-                    {
-                        ?>
-                        <div><img data-id="<?php echo $mesa['id_mes']; ?>" data-status="<?php echo $mesa['status_mes']; ?>" class="mesa-6" src="../media/mesa6.svg" alt="mesa 6 personas"></div>
-                        <?php
-                    }
-                    elseif($mesa['capacidad_mes'] ==10)
-                    {
-                        ?>
-                        <div><img data-id="<?php echo $mesa['id_mes']; ?>" data-status="<?php echo $mesa['status_mes']; ?>" class="mesa-10" src="../media/mesa10.svg" alt="mesa 10 personas"></div>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <div><img data-id="<?php echo $mesa['id_mes']; ?>" data-status="<?php echo $mesa['status_mes']; ?>" class="mesa-4" src="../media/mesa4.svg" alt="mesa 4 personas"></div>
-                        <?php
-                    }
-                    ?>
-                    <div><p>Mesa nº <?php echo $mesa['id_mes']; ?></p></div>
-                    <div><p>Mesa de <?php echo $mesa['capacidad_mes']; ?></p></div>
-                    <div><p>Estado:  <?php echo $mesa['status_mes']; ?></p></div>    
-                </div>
-
-                <?php
+                    echo "<div class='card'>";
+                        echo "<div class='mesas'>";
+                        echo "<p>Mesa nº ".$mesa['id_mes']."</p>";
+                        echo "<p>Capacidad de comensales: ".$mesa['capacidad_mes']."</p>";
+                        echo "<p>Estado: ".$mesa['status_mes']."</p>";
+                        echo "<a href='reservas.php?id_mes=".$mesa['id_mes']."'>Reservar mesa</a>";
+                        echo "</div>";
+                    echo "</div>";
                 }
-                ?>
-
-            </div>
-      
-    </div>
-
-    <?php 
- 
-    ?>
-    <div class="overlay" id="overlay">
-        <div class="abrirReserva" id="abrirReserva">
-            <div class="popup" id="popup">
-                <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop"><i class="fas fa-times"></i></a>
-                <h3>Reservar mesa</h3>
-                <form METHOD='POST' class="crearReserva" action="../services/reservar-mesa.php">
-                    <input type="hidden" id="idMesa" class="idMesa" name="idMesa">
-                    <label for="nombre">Nombre de la reserva</label>
-                    <input type="text" id="nombre" name="nombre">
-
-                    <input type="submit" value="Reservar" class="btn">
-                </form>
-            </div>
-        </div>
-        <div class="cerrarReserva" id="cerrarReserva">
-            <div class="popup" id="popup2">
-                <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop"><i class="fas fa-times"></i></a>
-                <h3>Modificar reserva</h3>
-                <form METHOD='POST'  class="editarReserva" action="../services/acabar-reserva.php">
-                    <input type="hidden" id="idMesa" class="idMesa" name="idMesa">
-                    <select name="accion">
-                        <option value="finalizar">Finalizar</option>
-                        <option value="cancelar">Cancelar</option>
-                    </select>
-                    <input type="submit" value="Guardar" class="btn">
-                </form>
-            </div>
-        </div>
+        
+            ?>
     </div>
 <?php
     }else{
         header("Location:../view/login.php");
     }
 ?>
+<style "background-color:red">
+    
+</style>
 </body>
 </html>
