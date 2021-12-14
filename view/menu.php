@@ -1,5 +1,6 @@
 <!DOCTYPE html>
     <?php
+    try {
         session_start();
         if (isset($_SESSION['email']))
         {
@@ -72,6 +73,9 @@
         }else{
             header("Location:../view/login.php");
         }
+    } catch (\Throwable $th) {
+        throw $th;
+    }
     ?>
 </body>
 </html>

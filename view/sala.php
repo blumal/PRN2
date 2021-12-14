@@ -1,8 +1,9 @@
 <?php //mirar si esta la sesion iniciada
-    include_once '../services/mesa.php';
-    include_once '../services/connection.php';
-    session_start();
-    if (isset($_SESSION['email'])){
+    try {
+        include_once '../services/mesa.php';
+        include_once '../services/connection.php';
+        session_start();
+        if (isset($_SESSION['email'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@
                         echo "<p>Mesa nº ".$mesa['id_mes']."</p>";
                         echo "<p>Capacidad de comensales: ".$mesa['capacidad_mes']."</p>";
                         echo "<p>Estado: ".$mesa['status_mes']."</p>";
-                        echo "<a href='reservas.php?id_mes=".$mesa['id_mes']."'>Reservar mesa</a>";
+                        echo "<a href='./reservaMesa.php?id_mes=".$mesa['id_mes']."'>Reservar mesa</a>";
                         echo "</div>";
                     echo "</div>";
                 }
@@ -62,9 +63,9 @@
     }else{
         header("Location:../view/login.php");
     }
+} catch (\Throwable $th) {
+    throw $th;
+}
 ?>
-<style "background-color:red">
-    
-</style>
 </body>
 </html>

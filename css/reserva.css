@@ -49,26 +49,13 @@ li {
 .container {
     background-color: #ACACAC;
     width: 100%;
-    height: auto;
     /*Si el div crece hacia abajo, se generará solo*/
 }
 
-.salas {
-    margin-top: 20px;
-    margin-left: 20px;
-    background-color: white;
-    width: 48%;
-    height: auto;
-    float: left;
+.form-res {
+    background-color: brown;
+    width: 60%;
     padding: 2%;
-    text-align: left;
+    border-radius: 2%;
     box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.5);
-}
-
-
-/*Esta sección permite ampliar la clase al posicionarse encima*/
-
-.salas:hover {
-    transform: scale(1.02);
-    transition: transform .3s;
 }
