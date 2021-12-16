@@ -86,20 +86,23 @@ try {
                 $mail_res = $_POST['mail_res'];
                 $datas_res = $_POST['datas_res'];
 
-                //Obtenemos el id de usuario de la session actual
+                //Obtenemos el id de usuario de la session actual para generar la reserva
                 $userRes = $pdo->prepare("SELECT id_use FROM tbl_usuario WHERE email_use = ?");
                 $userRes->bindparam(1, $_SESSION['email']);
                 $userRes->execute();
                 $userRes = $userRes->fetch(PDO::FETCH_NUM);
 
                 //Query de comprobación
-                $checkRes = $pdo->prepare("SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;");
-                $checkRes->execute();
-                //$query = $checkRes->fetchColumn();
-                $validate = $checkRes->rowCount(); //Recoge el dato, 1 si si hay concidencia, 0 no hay
+                //$checkRes = "SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;";
+                $checkRes_run = $pdo->prepare("SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;");
+                $checkRes_run->execute();
+                $checkRes_exec = $checkRes_run->fetchAll(PDO::FETCH_ASSOC);
+                $finalcheck = count($finalcheck);
+                //$checkRes_exec = $checkRes_run->rowCount();//Recoge el dato, 1 si si hay concidencia, 0 no hay
+                //$query = $checkRes->fetchColumn(); //fetchColumc busca coluMNAS
 
                 //Comprobamos la concidencia de datos, si es 0 inserterá, si es 1, devolverá un error
-                if($validate !== 0){
+                if($finalcheck == 1){
                     echo "<script>alert('Error');</script>";
                 }else{
                     //Reservamos mesa

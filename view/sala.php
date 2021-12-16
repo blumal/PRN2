@@ -51,7 +51,6 @@
                         echo "<div class='mesas'>";
                         echo "<p>Mesa nº ".$mesa['id_mes']."</p>";
                         echo "<p>Capacidad de comensales: ".$mesa['capacidad_mes']."</p>";
-                        echo "<p>Estado: ".$mesa['status_mes']."</p>";
                         echo "<a href='./reservaMesa.php?id_mes=".$mesa['id_mes']."'>Reservar mesa</a>";
                         echo "</div>";
                     echo "</div>";
