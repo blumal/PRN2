@@ -34,6 +34,9 @@ try {
 <center>
     <h1>Reservas</h1>
 </center>
+<?php
+
+?>
 <div class="container">
     <center>
         <div class="form-res">
@@ -66,32 +69,60 @@ try {
                 <h3>Email de contacto:</h3>
                     <input type="text" name="mail_res" placeholder="example@gmail.com" size="30">
                 <h3>Datos de reserva:</h3>
-                <input type="text" name="datas_res" placeholder="Datos de la reserva, como el nombre por ejemplo..." size="30"></br></br></br></br>
+                <input type="text" name="datas_res" placeholder="Datos de la reserva, como el nombre por ejemplo el nombre, datos a tener en cuenta, etc." style="width:550px; height:80px"></br></br></br></br>
                 <input type="submit" name="submit" value="Reservar">
             </form>
         </div>
     </center>
     <?php
-        $id_mes = $_GET['id_mes'];
-        $date_mes = $_POST['date_mes'];
-        $hour_res = $_POST['hour_res'];
-        $timestamp = strtotime("$hour_res"); //Convertimos el string a formato fecha
-        $correct_date_format = date('H:i:s', $timestamp); // Asignamos el correcto formato al string anterior
-        $mail_res = $_POST['mail_res'];
-        $datas_res = $_POST['datas_res'];
+        try {
+            if (isset($_POST['submit'])) {
+                $id_mes = $_GET['id_mes'];
+                $date_res = $_POST['date_res'];
+                $hour_res = $_POST['hour_res'];
+                $timestamp = strtotime("$hour_res"); //Convertimos el string a formato fecha
+                $correct_date_format = date('H:i:s', $timestamp); // Asignamos el correcto formato al string anterior
+                $correctDate = $correct_date_format;
+                $mail_res = $_POST['mail_res'];
+                $datas_res = $_POST['datas_res'];
 
-        $reservaMes=$pdo->prepare("INSERT INTO tbl_reserva (fecha_res, hora_res, datos_res, id_use_fk, id_mes_fk, email_res) 
-        VALUES ('$date_mes', '$correct_date_format', '$datas_res', '1', '56', 'ewff');");
-        $reservaMes->execute();
-        $reservaMes = $reservaMes->fetch(PDO::FETCH_NUM);
-    
-        $timestamp = strtotime("$hour_res");
-        $correct_date_format = date('H:i:s', $timestamp);
+                //Obtenemos el id de usuario de la session actual
+                $userRes = $pdo->prepare("SELECT id_use FROM tbl_usuario WHERE email_use = ?");
+                $userRes->bindparam(1, $_SESSION['email']);
+                $userRes->execute();
+                $userRes = $userRes->fetch(PDO::FETCH_NUM);
 
-        //echo $timestamp;
-        
-        echo $correct_date_format;
-        
+                //Query de comprobación
+                $checkRes = $pdo->prepare("SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;");
+                $checkRes->execute();
+                //$query = $checkRes->fetchColumn();
+                $validate = $checkRes->rowCount(); //Recoge el dato, 1 si si hay concidencia, 0 no hay
+
+                //Comprobamos la concidencia de datos, si es 0 inserterá, si es 1, devolverá un error
+                if($validate !== 0){
+                    echo "<script>alert('Error');</script>";
+                }else{
+                    //Reservamos mesa
+                    $reservaMes=$pdo->prepare("INSERT INTO tbl_reserva (fecha_res, hora_res, datos_res, id_use_fk, id_mes_fk, email_res) 
+                    VALUES ('$date_res', '$correct_date_format', '$datas_res', '$userRes[0]', '$id_mes', '$mail_res');");
+
+                    //Se comprueba que la query fue ejectuada correctamente o no
+                    if ($reservaMes->execute()){
+                        //Query success
+                        echo "<script>validadaRes();</script>";
+                    }else{
+                        //Error in insert
+                        echo "<script>alert('error2');</script>";
+                    }
+                }
+                
+            }else{
+                echo "";
+            }
+            
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     ?>
 </div>
     <?php
