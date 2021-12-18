@@ -1,5 +1,8 @@
 <?php
-    include_once '../services/connection.php';
+    try {
+        include_once '../services/connection.php';
+        session_start();
+        if (isset($_SESSION['email'])){
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +56,12 @@
                         echo "<td>".$datas['email_use']."</td>";
                         echo "<td>".$datas['tipo_use']."</td>";
                         echo "<td><a href='./updateUser-form.php?id_use=".$datas['id_use']."'>Actualizar usuario</a></td>";
-                        echo "<td><a href='./deluser-proc.php?id_use=".$datas['id_use']."'>Eliminar usuario</a></td>";
+                        //Mediante este condicional comparamos el current login user(email) con los datos obtenidos de la db, si el email coincide no sé podrá entrar al apartado delete
+                        if ($_SESSION['email'] == $datas['email_use']) {
+                            echo "<td>Banned</td>";
+                        }else{
+                            echo "<td><a href='../services/dropUser-proc.php?id_use=".$datas['id_use']."'>Eliminar usuario</a></td>";
+                        }
                     echo "</tr>";
                 }
             ?>
@@ -62,5 +70,13 @@
         </div>
     </div>
 </center>
+<?php
+    }else{
+        header("Location:../view/login.php");
+    }
+} catch (\Throwable $th) {
+    throw $th;
+}
+?>
 </body>
 </html>

@@ -53,14 +53,10 @@ li {
 
 .container {
     width: 80%;
-    /*Si el div crece hacia abajo, se generará solo*/
 }
 
-.content {
-    background-color: #ffc1c1;
-    width: 100%;
-}
-
-table {
-    width: 100%;
+.form-update {
+    width: 80%;
+    background-color: burlywood;
+    opacity: 0.95;
 }

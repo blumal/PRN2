@@ -92,17 +92,14 @@ try {
                 $userRes->execute();
                 $userRes = $userRes->fetch(PDO::FETCH_NUM);
 
-                //Query de comprobación
+                //Query de comprobación de existencia de reserva
                 //$checkRes = "SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;";
-                $checkRes_run = $pdo->prepare("SELECT * FROM tbl_reserva WHERE fecha_res=$date_res AND hora_res=$correct_date_format AND id_mes_fk=$id_mes;");
+                $checkRes_run = $pdo->prepare("SELECT * FROM tbl_reserva WHERE fecha_res='$date_res' AND hora_res='$correct_date_format' AND id_mes_fk='$id_mes';");
                 $checkRes_run->execute();
-                $checkRes_exec = $checkRes_run->fetchAll(PDO::FETCH_ASSOC);
-                $finalcheck = count($finalcheck);
-                //$checkRes_exec = $checkRes_run->rowCount();//Recoge el dato, 1 si si hay concidencia, 0 no hay
-                //$query = $checkRes->fetchColumn(); //fetchColumc busca coluMNAS
-
+                $checkRes_num = $checkRes_run->rowCount();//Recoge el dato, 1 si si hay concidencia, 0 no hay
+                //$query = $checkRes->fetchColumn(); //fetchColumc busca columnas
                 //Comprobamos la concidencia de datos, si es 0 inserterá, si es 1, devolverá un error
-                if($finalcheck == 1){
+                if($checkRes_num > 0){
                     echo "<script>alert('Error');</script>";
                 }else{
                     //Reservamos mesa

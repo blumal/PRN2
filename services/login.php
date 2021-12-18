@@ -12,14 +12,20 @@
 
     $stmt->execute();
 
-    $num=$stmt->fetchAll(PDO::FETCH_ASSOC);
-    $num=count($num);
+    $num=$stmt->fetch(PDO::FETCH_ASSOC);
+    $num2=$stmt->rowCount(); //Cuenta el resultado, si es 1 o 0
 
+    echo $num['tipo_use'];
+    //Recogemos el tipo de usuario para efectuar una redirección u otra
     try {
-        if ($num==1){
+        if ($num2==1){
             session_start();
             $_SESSION['email']=$username;
-            header("Location:../view/menu.php");
+            if ($num['tipo_use'] == 'Admin') {
+                header("Location:../view/admon.php");
+            }else{
+                header("Location:../view/menu.php");
+            }
         }else{
             header("Location:../view/login.php");
         }
