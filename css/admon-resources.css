@@ -5,7 +5,8 @@
 body {
     margin: 0px;
     background-image: url("../media/adminzone.jpg");
-    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*Fija el background*/
     background-size: cover;
     background-position-y: -125px;
     width: 100%;
