@@ -35,7 +35,7 @@ try {
 <div class="container">
     <center>
         <h1>Reservas</h1>
-        <form class="form" action="#" method="post">
+        <form class="topbefore" action="#" method="post">
             <h2>Make a reservation</h2>
             <h3>Fecha:</h3>
             <input type="date" name="date_res" min=<?php $today=date("Y-m-d"); echo $today;?> required/>
@@ -67,10 +67,6 @@ try {
                 <h3>Datos de reserva:</h3>
                 <input type="text" name="datas_res" placeholder="Datos de la reserva, como el nombre por ejemplo el nombre, datos a tener en cuenta, etc." style="width:550px; height:80px"></br></br></br></br>
                 <input type="submit" name="submit" value="Reservar">
-                <div>
-                    <span class="fa fa-phone"></span>+34934753023
-                    <span class="fa fa-envelope-o"></span> support@myrestaurant.com
-                </div>
         </form>
 </div>
     </center>
@@ -100,7 +96,7 @@ try {
                 //$query = $checkRes->fetchColumn(); //fetchColumc busca columnas
                 //Comprobamos la concidencia de datos, si es 0 inserterá, si es 1, devolverá un error
                 if($checkRes_num > 0){
-                    echo "<script>alert('Error');</script>";
+                    echo "<script>alert('Coincidencia de datos: pruebe a modificar la fecha, la hora y/o la mesa');</script>";
                 }else{
                     //Reservamos mesa
                     $reservaMes=$pdo->prepare("INSERT INTO tbl_reserva (fecha_res, hora_res, datos_res, id_use_fk, id_mes_fk, email_res) 

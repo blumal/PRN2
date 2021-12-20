@@ -68,7 +68,12 @@
                         }
                     ?>
                 </tbody>
-            </table>
+            </table></br>
+            <div class="updateUser">
+                <form action="./add-newUser.php" method="post">
+                    <input type="submit" value="Add new user">
+                </form>
+            </div>
         </div>
     </div>
 </center>
