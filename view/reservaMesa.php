@@ -25,26 +25,22 @@ try {
                 <?php
                     echo "<li class='opcionesMenu'>Hola ".$_SESSION['email']."</li>";
                     echo "<li><a class='opcionesMenu' href='./menu.php'>Home</a></li>";
+                    echo "<li><a class='opcionesMenu' href='./reservados.php'>Reservados</a></li>";
                     echo "<li><div class='logout'><a class='opcionesMenu' href='../services/kill-login.php'>Log out</a></div>";
                 ?>
             </ul>
         </nav>
     </div>
 </header>
-<center>
-    <h1>Reservas</h1>
-</center>
-<?php
-
-?>
 <div class="container">
     <center>
-        <div class="form-res">
-            <form action="#" method="post">
-                <h3>Fecha:</h3>
-                    <input type="date" name="date_res" min=<?php $today=date("Y-m-d"); echo $today;?> />
-                <h3>Hora:</h3>
-                    <select name="hour_res" id="">
+        <h1>Reservas</h1>
+        <form class="form" action="#" method="post">
+            <h2>Make a reservation</h2>
+            <h3>Fecha:</h3>
+            <input type="date" name="date_res" min=<?php $today=date("Y-m-d"); echo $today;?> required/>
+            <h3>Hora:</h3>
+                    <select name="hour_res" id="" required>
                         <optgroup label="Comida">
                             <option value="13:00">13:00h</option>
                             <option value="13:30">13:30h</option>
@@ -67,12 +63,16 @@ try {
                 <!-- <h3>Cantidad de personas</h3>
                     <input type="number" placeholder="Cantidad de personas" required> -->
                 <h3>Email de contacto:</h3>
-                    <input type="text" name="mail_res" placeholder="example@gmail.com" size="30">
+                    <input type="email" name="mail_res" placeholder="example@gmail.com" size="30" required>
                 <h3>Datos de reserva:</h3>
                 <input type="text" name="datas_res" placeholder="Datos de la reserva, como el nombre por ejemplo el nombre, datos a tener en cuenta, etc." style="width:550px; height:80px"></br></br></br></br>
                 <input type="submit" name="submit" value="Reservar">
-            </form>
-        </div>
+                <div>
+                    <span class="fa fa-phone"></span>+34934753023
+                    <span class="fa fa-envelope-o"></span> support@myrestaurant.com
+                </div>
+        </form>
+</div>
     </center>
     <?php
         try {

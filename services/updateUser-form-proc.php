@@ -21,7 +21,8 @@ try {
             echo "<script>window.location.href = '../view/admon.php';</script>";
 
         }else{
-            echo "<script>alert('Algo fue mal en la operación'); return window.location.href = '../view/admon.php';</script>";
+            echo "<script>alert('Algo fue mal en la operación');</script>";
+            echo "<script>window.location.href = '../view/admon.php';</script>";
         }
     }
 } catch (\Throwable $th) {

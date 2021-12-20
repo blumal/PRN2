@@ -4,6 +4,7 @@
 
 body {
     margin: 0px;
+    background-image: url("../media/diem-back.jpeg");
 }
 
 .row:after {
@@ -49,13 +50,104 @@ li {
 .container {
     background-color: #ACACAC;
     width: 100%;
+    background-image: url("../media/diem-back.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5%;
     /*Si el div crece hacia abajo, se generará solo*/
 }
 
-.form-res {
+.container h1 {
+    color: white;
+    margin-top: 0px;
+}
+
+
+/* .form-res {
     background-color: brown;
     width: 60%;
     padding: 2%;
     border-radius: 2%;
     box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.5);
+} */
+
+.container .form {
+    width: 60%;
+    height: auto;
+    background: #e6e6e6;
+    border-radius: 8px;
+    box-shadow: 0 0 40px -10px #000;
+    padding: 20px 30px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+}
+
+.container h2 {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    width: 180px;
+    color: #78788c;
+    border-bottom: 3px solid #78788c;
+}
+
+.container input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 0;
+    font-family: "Montserrat", sans-serif;
+    transition: all 0.3s;
+    border-bottom: 2px solid #bebed2;
+}
+
+.container input:focus {
+    border-bottom: 2px solid #78788c;
+}
+
+.container p:before {
+    content: attr(type);
+    display: block;
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: #5a5a5a;
+}
+
+.container input {
+    float: right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: "Montserrat", sans-serif;
+    border: 2px solid #78788c;
+    background: 0;
+    color: #5a5a6e;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container button:hover {
+    background: #78788c;
+    color: #fff;
+}
+
+.container div {
+    content: "Hi";
+    position: absolute;
+    bottom: -15px;
+    right: -20px;
+    background: #50505a;
+    color: #fff;
+    width: 320px;
+    padding: 16px 4px 16px 0;
+    border-radius: 6px;
+    font-size: 13px;
+    box-shadow: 10px 10px 40px -14px #000;
+}
+
+.container span {
+    margin: 0 5px 0 15px;
 }

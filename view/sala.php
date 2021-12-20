@@ -29,16 +29,16 @@
         </nav>
     </div>
 </header>
-<center>
     <?php
         $id_sal = $_GET['id_sal'];
         $sala=$pdo->prepare("SELECT nombre_sal from tbl_sala WHERE id_sal = $id_sal");
         $sala->execute();
         $sala = $sala->fetch(PDO::FETCH_NUM);
     ?>
-    <h1>Mesas sala <?php echo $sala[0]?></h1>
-</center>
     <div class="row container">
+    <center>
+        <h1>Mesas sala <?php echo $sala[0]?></h1>
+    </center>
             <?php
                 $id_sal = $_GET['id_sal'];
                 //echo $id_sal;

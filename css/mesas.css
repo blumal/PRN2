@@ -55,13 +55,34 @@ li {
     /*Si el div crece hacia abajo, se generará solo*/
 }
 
+.container h1 {
+    margin-top: 0px;
+    color: white;
+    padding: 2.5%;
+}
+
 .mesas {
     height: 175px;
     width: 100%;
-    padding: 6%;
+    padding: 7%;
     border-radius: 2%;
-    background-color: white;
+    background-color: papayawhip;
     box-shadow: 0px 5px 7px 5px rgba(0, 0, 0, 0.5);
+}
+
+.mesas a:link,
+a:visited {
+    background-color: #ACACAC;
+    color: white;
+    padding: 10px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.mesas a:hover,
+a:active {
+    background-color: rgb(0, 133, 18);
 }
 
 .card {

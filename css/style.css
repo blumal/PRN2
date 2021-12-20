@@ -46,11 +46,38 @@ li {
     margin: 0px;
 }
 
+.salas a:link,
+.salas a:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid green;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.salas a:hover,
+.salas a:active {
+    background-color: green;
+    color: white;
+}
+
 .container {
     background-color: #ACACAC;
     width: 100%;
-    height: auto;
+    padding: 6%;
+    /* height: auto; */
+    background-image: url("../media//sala-back.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -55px;
     /*Si el div crece hacia abajo, se generará solo*/
+}
+
+.container h1 {
+    color: white;
+    margin-top: 0px;
 }
 
 .salas {
@@ -58,7 +85,6 @@ li {
     margin-left: 20px;
     background-color: white;
     width: 48%;
-    height: auto;
     float: left;
     padding: 2%;
     text-align: left;

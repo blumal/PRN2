@@ -53,8 +53,12 @@ li {
 
 .container {
     width: 80%;
-    height: auto;
+    height: 2500px;
     /*Si el div crece hacia abajo, se generará solo*/
+}
+
+.content {
+    width: 80%;
 }
 
 table {
