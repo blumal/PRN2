@@ -56,6 +56,10 @@ _Breve explicación configuración en un hosting_
 
 * Cualquier tipo de cambio, compruébalo tanto en la búsqueda normal como en la privada, esto solventa muchos errores (Esta opción es viable tanto en el desarrollo local como en hosting)
 
+* Cambiar la configuración de la DB, usuario, password, y DB Incluirla los parámetros de conf a la página de conection define()... Comprobar que en totas las páginas con sesiones añadir al principio del fichero ob_start(); y debajo de cada header(location) ob_end_flush();
+
+* Esto $stmp="mysql:dbname=".BD.";host=";SERVIDOR; cambiarlo por esto $stmp="mysql:dbname=".BD.";host=".SERVIDOR; en caso de.
+
 ### Y las pruebas de estilo de codificación ⌨️
 
 _A partir de aquí continuamos con la implementación de la web en 000Webhost, por lo que habrá que tener varios aspectos a tener en cuenta._
