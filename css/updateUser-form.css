@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    background-image: url("../media/adminzone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -125px;
+    width: 100%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav {
+    padding: 60px;
+    background-color: #ACACAC;
+    ;
+    font-size: 20px;
+    /*text-align: right;*/
+}
+
+.opcionesMenu {
+    text-decoration: none;
+    text-align: right;
+    color: black;
+    padding: 10px 20px;
+    margin: 15px;
+    /*Espacio entre las opciones del menú*/
+    border-radius: 5px;
+}
+
+.opcionesMenu:hover {
+    background: black;
+    color: white;
+}
+
+ul {
+    text-align: right;
+    margin: 0px;
+}
+
+li {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0px;
+}
+
+.container {
+    width: 80%;
+}
+
+.form-update {
+    width: 80%;
+    background-color: burlywood;
+    opacity: 0.95;
+}

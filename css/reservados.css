@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav {
+    padding: 60px;
+    background-color: #ACACAC;
+    ;
+    font-size: 20px;
+    /*text-align: right;*/
+}
+
+.opcionesMenu {
+    text-decoration: none;
+    text-align: right;
+    color: black;
+    padding: 10px 20px;
+    margin: 15px;
+    /*Espacio entre las opciones del menú*/
+    border-radius: 5px;
+}
+
+.opcionesMenu:hover {
+    background: black;
+    color: white;
+}
+
+ul {
+    text-align: right;
+    margin: 0px;
+}
+
+li {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0px;
+}
